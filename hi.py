@@ -1,0 +1,2 @@
+x=mahi
+print(x)
