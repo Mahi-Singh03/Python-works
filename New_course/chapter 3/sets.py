@@ -1,74 +1,198 @@
-# set
-# A set is an unordered collection of unique elements. Sets are mutable, meaning you can change their contents after they are created.
+# =========================================================
+# SETS IN PYTHON
+# =========================================================
 
-# my_set = {1, 2, 3, 4, 5}
-# print(my_set)
+# A set is an unordered collection of unique elements.
 
-# # # Sets do not allow duplicate elements. If you try to add a duplicate element, it will be ignored.
-# my_set.add(3)  # This will not add 3 to the set because it is already present.
-# print(my_set)  # {1, 2, 3, 4, 5}
+# Features of Sets:
+# 1. Unordered
+# 2. Mutable
+# 3. Does not allow duplicate values
+# 4. Supports mathematical operations
 
-# # Sets are unordered, which means that the elements do not have a specific order. When you print a set, the order of the elements may be different each time.
-s1={True, False, True, False, 1, 0,9, 1, 0, "mahi", "mahi"}
-print(s1)  
-print(1==True)  # True
+# =========================================================
+# CREATING SETS
+# =========================================================
 
+my_set = {1, 2, 3, 4, 5}
 
+print("Original Set:")
+print(my_set)
 
+# =========================================================
+# DUPLICATE VALUES
+# =========================================================
 
+# Sets automatically remove duplicates.
 
+duplicate_set = {1, 2, 3, 3, 4, 5}
 
+print("\nSet with Duplicate Values:")
+print(duplicate_set)
 
+# =========================================================
+# BOOLEAN AND INTEGER VALUES
+# =========================================================
 
-#  union
-s2={1, 2, 3, 4, 5}
-s3={4, 5, 6, 7, 8}
+# In Python:
+# True == 1
+# False == 0
 
-print(s2.union(s3))  # {1, 2, 3, 4, 5, 6, 7, 8}
+s1 = {True, False, True, False, 1, 0, 9, "mahi", "mahi"}
 
+print("\nBoolean and Integer Values in Set:")
+print(s1)
 
+print("\nChecking Equality:")
+print(1 == True)
 
+# =========================================================
+# ADDING ELEMENTS
+# =========================================================
 
-# intersection
+print("\nUsing add():")
 
-print(s2.intersection(s3))  # {4, 5}
+my_set.add(6)
 
+print(my_set)
 
+# =========================================================
+# REMOVING ELEMENTS
+# =========================================================
 
-# difference
+# remove()
+# Removes an element.
+# Gives error if value is missing.
 
-print(s2.difference(s3))  # {1, 2, 3}
-print(s3.difference(s2))  # {6, 7, 8}
+print("\nUsing remove():")
 
+my_set.remove(2)
 
+print(my_set)
 
-# symmetric difference
+# ---------------------------------------------------------
 
-print(s2.symmetric_difference(s3))  # {1, 2, 3, 6, 7, 8}
+# discard()
+# Removes element safely.
+# Does not give error if value is absent.
 
+print("\nUsing discard():")
 
+my_set.discard(10)
 
-# subset and superset
+print(my_set)
 
-s4={1, 2, 3}
-s5={1, 2, 3, 4, 5}  
+# =========================================================
+# CLEARING A SET
+# =========================================================
 
-print(s4.issubset(s5))  # True
-print(s5.issuperset(s4))  # True
+temp_set = {1, 2, 3}
 
+print("\nBefore clear():")
+print(temp_set)
 
-# methods of set
-# add() - Adds an element to the set.
-# remove() - Removes an element from the set. Raises a KeyError if the element is not present.
-# discard() - Removes an element from the set if it is present. Does not raise an
-# error if the element is not present.
-# clear() - Removes all elements from the set.
+temp_set.clear()
 
+print("After clear():")
+print(temp_set)
 
-# frozenset
-# A frozenset is an immutable version of a set. Once a frozenset is created, you cannot change its contents. Frozensets are hashable, which means they can be used as keys in a dictionary or as elements of another set.
+# =========================================================
+# SET OPERATIONS
+# =========================================================
+
+s2 = {1, 2, 3, 4, 5}
+s3 = {4, 5, 6, 7, 8}
+
+# =========================================================
+# UNION
+# =========================================================
+
+print("\nUnion:")
+
+print(s2.union(s3))
+
+# =========================================================
+# INTERSECTION
+# =========================================================
+
+print("\nIntersection:")
+
+print(s2.intersection(s3))
+
+# =========================================================
+# DIFFERENCE
+# =========================================================
+
+print("\nDifference:")
+
+print(s2.difference(s3))
+
+print(s3.difference(s2))
+
+# =========================================================
+# SYMMETRIC DIFFERENCE
+# =========================================================
+
+print("\nSymmetric Difference:")
+
+print(s2.symmetric_difference(s3))
+
+# =========================================================
+# SUBSET AND SUPERSET
+# =========================================================
+
+s4 = {1, 2, 3}
+s5 = {1, 2, 3, 4, 5}
+
+# issubset()
+print("\nSubset:")
+
+print(s4.issubset(s5))
+
+# issuperset()
+print("\nSuperset:")
+
+print(s5.issuperset(s4))
+
+# =========================================================
+# COMMON SET METHODS
+# =========================================================
+
+# add()      -> Adds element
+# remove()   -> Removes element
+# discard()  -> Removes safely
+# clear()    -> Removes all elements
+
+# =========================================================
+# FROZENSET
+# =========================================================
+
+# A frozenset is an immutable version of a set.
+
 my_frozenset = frozenset([1, 2, 3, 4, 5])
-print(my_frozenset)  # frozenset({1, 2, 3, 4, 5})
 
+print("\nFrozenset:")
 
+print(my_frozenset)
 
+# =========================================================
+# CHECKING TYPES
+# =========================================================
+
+print("\nChecking Types:")
+
+print(type(my_set))
+
+print(type(my_frozenset))
+
+# =========================================================
+# LENGTH OF SET
+# =========================================================
+
+print("\nLength of Set:")
+
+print(len(s2))
+
+# =========================================================
+# END OF PROGRAM
+# =========================================================

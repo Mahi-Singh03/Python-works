@@ -278,3 +278,49 @@ my_tuple = (1, 2, 3)
 - Immutable types are safer and faster when data should remain constant.
 
 ---
+
+
+# Type Casting in Python
+
+## What is Type Casting?
+
+Type casting is the process of converting one data type into another data type.
+
+Python provides built-in functions to perform type conversion easily.
+
+---
+
+# Why Type Casting is Used
+
+Type casting is useful when:
+- Taking input from users
+- Performing calculations
+- Converting numbers into strings
+- Formatting data
+
+---
+
+# Basic Example
+
+
+    x = 5
+
+    t = str(x)
+
+    print(x)
+    print(t)
+
+    print(type(x))
+    print(type(t))
+
+# Common Type Casting Functions
+
+| Function | Converts To | Example |
+|----------|-------------|----------|
+| `int()` | Integer | `int("10")` |
+| `float()` | Float | `float("5.5")` |
+| `str()` | String | `str(100)` |
+| `bool()` | Boolean | `bool(1)` |
+| `list()` | List | `list((1,2,3))` |
+| `tuple()` | Tuple | `tuple([1,2])` |
+| `set()` | Set | `set([1,2,2])` |
