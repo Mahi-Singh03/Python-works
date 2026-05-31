@@ -126,6 +126,7 @@
 
 #     print(file.readline())
 
+
 # =========================================================
 # readlines()
 # =========================================================
@@ -142,20 +143,20 @@
 # WRITING MULTIPLE LINES
 # =========================================================
 
-print("\nWRITING MULTIPLE LINES")
+# print("\nWRITING MULTIPLE LINES")
 
-languages = [
-    "Python\n",
-    "Java\n",
-    "C++\n",
-    "JavaScript\n"
-]
+# languages = [
+#     "Python\n",
+#     "Java\n",
+#     "C++\n",s
+#     "JavaScript\n"
+# ]
 
-with open("mahi.txt", "w") as file:
+# with open("mahi.txt", "w") as file:
 
-    file.writelines(languages)
+#     file.writelines(languages)
 
-print("Multiple lines written successfully")
+# print("Multiple lines written successfully")
 
 # # =========================================================
 # # FILE POINTER FUNCTIONS
