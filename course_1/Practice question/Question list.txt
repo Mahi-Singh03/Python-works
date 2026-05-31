@@ -1,2 +1,0 @@
-Q 1 : take the length and breath as input from the user as input and then calculate the 
-    area of rectangle.

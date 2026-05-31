@@ -1,2 +1,0 @@
-x=mahi
-print(x)
