@@ -1,759 +1,750 @@
-# Class Methods and Decorators in Python
+# Inheritance in Python
 
 ---
 
-# Introduction
+# What is Inheritance?
 
-In Python, methods inside a class can behave differently depending on how they are defined.
+Inheritance is one of the most important concepts in Object-Oriented Programming (OOP).
 
-Python provides three main types of methods:
+Inheritance allows one class to acquire the properties (attributes) and behaviors (methods) of another class.
 
-1. Instance Methods
-2. Class Methods
-3. Static Methods
+The class that gives properties is called the **Parent Class** (Base Class or Super Class).
 
-To create Class Methods and Static Methods, Python uses **Decorators**.
-
-Understanding these concepts is important because they are widely used in Object-Oriented Programming (OOP), frameworks, and real-world applications.
+The class that receives properties is called the **Child Class** (Derived Class or Sub Class).
 
 ---
 
-# What is a Method?
+# Why Use Inheritance?
 
-A method is a function defined inside a class.
+Inheritance provides:
 
-Example:
+* Code Reusability
+* Less Code Duplication
+* Better Code Organization
+* Easier Maintenance
+* Faster Development
 
-```python
-class Student:
-
-    def greet(self):
-        print("Hello")
-```
-
-Here:
-
-```python
-greet()
-```
-
-is a method.
+Instead of writing the same code again and again, we can inherit it from an existing class.
 
 ---
 
-# Types of Methods in Python
-
-| Method Type     | First Parameter | Works With        |
-| --------------- | --------------- | ----------------- |
-| Instance Method | self            | Object Data       |
-| Class Method    | cls             | Class Data        |
-| Static Method   | None Required   | Independent Logic |
-
----
-
-# 1. Instance Methods
-
-Instance methods work with object-specific data.
-
-They use:
+# Basic Syntax
 
 ```python
-self
-```
+class Parent:
+    pass
 
-as the first parameter.
-
----
-
-# Example
-
-```python
-class Student:
-
-    def __init__(self, name):
-        self.name = name
-
-    def show_name(self):
-        print(self.name)
-
-student1 = Student("Mahi")
-
-student1.show_name()
-```
-
----
-
-# Output
-
-```python
-Mahi
-```
-
----
-
-# How It Works
-
-When Python executes:
-
-```python
-student1.show_name()
-```
-
-Python automatically sends:
-
-```python
-self = student1
-```
-
-Therefore:
-
-```python
-self.name
-```
-
-becomes:
-
-```python
-student1.name
-```
-
----
-
-# What is a Decorator?
-
-A decorator is a special tool in Python that modifies the behavior of a function or method.
-
-Decorators start with:
-
-```python
-@
-```
-
-symbol.
-
-Examples:
-
-```python
-@classmethod
-@staticmethod
-@property
-```
-
----
-
-# Why Use Decorators?
-
-Decorators allow us to:
-
-* Add extra functionality
-* Modify behavior
-* Reuse code
-* Make code cleaner
-
----
-
-# Example of a Simple Decorator
-
-```python
-def decorator_function(func):
-
-    def wrapper():
-        print("Before Function")
-
-        func()
-
-        print("After Function")
-
-    return wrapper
-
-
-@decorator_function
-def say_hello():
-    print("Hello")
-
-
-say_hello()
-```
-
----
-
-# Output
-
-```python
-Before Function
-Hello
-After Function
-```
-
----
-
-# How Decorators Work
-
-This:
-
-```python
-@decorator_function
-def say_hello():
-    print("Hello")
-```
-
-is equivalent to:
-
-```python
-def say_hello():
-    print("Hello")
-
-say_hello = decorator_function(say_hello)
-```
-
----
-
-# What is a Class Method?
-
-A class method works with the class itself instead of individual objects.
-
-Class methods use:
-
-```python
-cls
-```
-
-as the first parameter.
-
----
-
-# Syntax
-
-```python
-class MyClass:
-
-    @classmethod
-    def method_name(cls):
-        pass
-```
-
----
-
-# Understanding cls
-
-The keyword:
-
-```python
-cls
-```
-
-represents the class itself.
-
-Example:
-
-```python
-class Student:
+class Child(Parent):
     pass
 ```
 
-Inside a class method:
-
-```python
-cls
-```
-
-refers to:
-
-```python
-Student
-```
+The child class automatically gets access to all public attributes and methods of the parent class.
 
 ---
 
-# Example of Class Method
+# Simple Example
 
 ```python
-class Student:
+class Animal:
 
-    school = "ABC School"
+    def sound(self):
+        print("Animal makes a sound")
 
-    @classmethod
-    def show_school(cls):
-        print(cls.school)
+class Dog(Animal):
 
-Student.show_school()
+    def bark(self):
+        print("Dog barks")
+
+dog = Dog()
+
+dog.sound()
+dog.bark()
 ```
 
----
-
-# Output
+## Output
 
 ```python
-ABC School
+Animal makes a sound
+Dog barks
 ```
 
 ---
 
-# What Happened?
+# How Does This Work?
+
+Step 1:
 
 ```python
-cls.school
+class Animal:
 ```
 
-becomes:
-
-```python
-Student.school
-```
+Creates the parent class.
 
 ---
 
-# Calling Class Method Through Object
+Step 2:
 
 ```python
-class Student:
-
-    school = "ABC School"
-
-    @classmethod
-    def show_school(cls):
-        print(cls.school)
-
-student1 = Student()
-
-student1.show_school()
+class Dog(Animal):
 ```
 
+Dog inherits Animal.
+
 ---
 
-# Output
+Step 3:
 
 ```python
-ABC School
+dog = Dog()
 ```
 
-Even though we used an object, Python still passes the class.
+Creates a Dog object.
 
 ---
 
-# Modifying Class Variables
-
-Class methods are often used to modify class variables.
-
----
-
-# Example
+Step 4:
 
 ```python
-class Student:
-
-    school = "ABC School"
-
-    @classmethod
-    def change_school(cls, new_name):
-        cls.school = new_name
-
-Student.change_school("XYZ School")
-
-print(Student.school)
+dog.sound()
 ```
 
+Python searches for `sound()` inside Dog.
+
+Not found.
+
+Then Python checks Animal.
+
+Method found.
+
+Method executes successfully.
+
 ---
 
-# Output
+# Types of Inheritance
 
-```python
-XYZ School
-```
+Python supports four major types of inheritance.
+
+| Type                     | Description                      |
+| ------------------------ | -------------------------------- |
+| Single Inheritance       | One parent and one child         |
+| Multiple Inheritance     | Multiple parents and one child   |
+| Multilevel Inheritance   | Chain of inheritance             |
+| Hierarchical Inheritance | One parent and multiple children |
 
 ---
 
-# Real-World Example
+# 1. Single Inheritance
 
-```python
-class Employee:
+Single inheritance occurs when one child class inherits from one parent class.
 
-    company = "Google"
+---
 
-    @classmethod
-    def change_company(cls, new_company):
-        cls.company = new_company
+## Structure
 
-Employee.change_company("Microsoft")
-
-print(Employee.company)
+```text
+Parent
+   |
+ Child
 ```
 
 ---
 
-# Output
+## Example
 
 ```python
-Microsoft
+class Animal:
+
+    def eat(self):
+        print("Animal can eat")
+
+class Dog(Animal):
+
+    def bark(self):
+        print("Dog barks")
+
+dog = Dog()
+
+dog.eat()
+dog.bark()
 ```
 
 ---
 
-# Class Method vs Instance Method
-
-| Feature                   | Instance Method | Class Method |
-| ------------------------- | --------------- | ------------ |
-| First Parameter           | self            | cls          |
-| Access Instance Variables | Yes             | No           |
-| Access Class Variables    | Yes             | Yes          |
-| Access Object Data        | Yes             | No           |
-| Access Class Data         | Yes             | Yes          |
-
----
-
-# What is a Static Method?
-
-A static method belongs to the class but does not use:
+## Output
 
 ```python
-self
-```
-
-or
-
-```python
-cls
-```
-
-It acts like a normal function placed inside a class.
-
----
-
-# Syntax
-
-```python
-class MyClass:
-
-    @staticmethod
-    def method_name():
-        pass
+Animal can eat
+Dog barks
 ```
 
 ---
 
-# Example
+## Explanation
+
+The Dog class inherits from Animal.
+
+Therefore Dog can use:
 
 ```python
-class Math:
+eat()
+```
 
-    @staticmethod
-    def add(a, b):
-        return a + b
+even though it is not written inside Dog.
 
-print(Math.add(10, 20))
+---
+
+## Real-Life Example
+
+```python
+class Vehicle:
+
+    def start(self):
+        print("Vehicle Started")
+
+class Car(Vehicle):
+
+    def drive(self):
+        print("Car is Driving")
+
+car = Car()
+
+car.start()
+car.drive()
 ```
 
 ---
 
-# Output
+# 2. Multiple Inheritance
 
-```python
-30
+Multiple inheritance occurs when one child class inherits from more than one parent class.
+
+---
+
+## Structure
+
+```text
+Parent1      Parent2
+     \       /
+      \     /
+       Child
 ```
 
 ---
 
-# Why Use Static Methods?
-
-Use static methods when:
-
-* Logic does not need object data
-* Logic does not need class data
-* Function belongs logically to the class
-
----
-
-# Real-World Example
+## Example
 
 ```python
-class Temperature:
+class Father:
 
-    @staticmethod
-    def celsius_to_fahrenheit(c):
-        return (c * 9/5) + 32
+    def driving(self):
+        print("Father can drive")
 
-print(Temperature.celsius_to_fahrenheit(25))
+class Mother:
+
+    def cooking(self):
+        print("Mother can cook")
+
+class Child(Father, Mother):
+    pass
+
+child = Child()
+
+child.driving()
+child.cooking()
 ```
 
 ---
 
-# Output
+## Output
 
 ```python
-77.0
+Father can drive
+Mother can cook
 ```
 
 ---
 
-# Comparing All Three Methods
+## Explanation
+
+The Child class inherits:
+
+* driving() from Father
+* cooking() from Mother
+
+Therefore Child can use both methods.
+
+---
+
+## Real-Life Example
 
 ```python
-class Student:
+class Camera:
 
-    school = "ABC School"
+    def click_photo(self):
+        print("Photo Captured")
 
-    def instance_method(self):
-        print("Instance Method")
+class Phone:
 
-    @classmethod
-    def class_method(cls):
-        print("Class Method")
+    def call(self):
+        print("Calling...")
 
-    @staticmethod
-    def static_method():
-        print("Static Method")
+class SmartPhone(Camera, Phone):
+    pass
+
+phone = SmartPhone()
+
+phone.click_photo()
+phone.call()
 ```
 
 ---
 
-# Calling Methods
+# Method Resolution Order (MRO)
+
+In multiple inheritance, what happens if multiple parent classes contain the same method?
+
+Python follows MRO (Method Resolution Order).
+
+Python checks parent classes from left to right.
+
+---
+
+## Example
 
 ```python
-student = Student()
+class A:
 
-student.instance_method()
+    def show(self):
+        print("Class A")
 
-Student.class_method()
+class B:
 
-Student.static_method()
+    def show(self):
+        print("Class B")
+
+class C(A, B):
+    pass
+
+obj = C()
+
+obj.show()
 ```
 
 ---
 
-# Output
+## Output
 
 ```python
-Instance Method
-Class Method
-Static Method
+Class A
 ```
 
 ---
 
-# Difference Between self and cls
-
-| self                     | cls                    |
-| ------------------------ | ---------------------- |
-| Refers to Object         | Refers to Class        |
-| Used in Instance Methods | Used in Class Methods  |
-| Access Object Variables  | Access Class Variables |
-| Unique for Every Object  | Same for Entire Class  |
-
----
-
-# Example
+Because Python checks:
 
 ```python
-class Student:
-
-    school = "ABC School"
-
-    def instance(self):
-        print(self.school)
-
-    @classmethod
-    def class_method(cls):
-        print(cls.school)
-```
-
-Both can access class variables.
-
-However:
-
-```python
-self
-```
-
-refers to an object.
-
-```python
-cls
-```
-
-refers to the class.
-
----
-
-# Factory Methods Using Class Methods
-
-A factory method creates objects.
-
-Class methods are commonly used for this purpose.
-
----
-
-# Example
-
-```python
-class Student:
-
-    def __init__(self, name):
-        self.name = name
-
-    @classmethod
-    def create_student(cls):
-
-        return cls("Mahi")
-
-student = Student.create_student()
-
-print(student.name)
+A first
+then B
 ```
 
 ---
 
-# Output
+## Checking MRO
 
 ```python
-Mahi
+print(C.mro())
+```
+
+Output:
+
+```python
+[C, A, B, object]
 ```
 
 ---
 
-# Built-in Decorators
+# 3. Multilevel Inheritance
 
-Python provides several decorators.
+Multilevel inheritance occurs when inheritance happens in a chain.
+
+A child class becomes a parent for another class.
 
 ---
 
-# @classmethod
+## Structure
 
-Used for class methods.
-
-```python
-@classmethod
+```text
+GrandParent
+      |
+    Parent
+      |
+     Child
 ```
 
 ---
 
-# @staticmethod
-
-Used for static methods.
+## Example
 
 ```python
-@staticmethod
+class Animal:
+
+    def eat(self):
+        print("Animal Eats")
+
+class Dog(Animal):
+
+    def bark(self):
+        print("Dog Barks")
+
+class Puppy(Dog):
+
+    def weep(self):
+        print("Puppy Weeps")
+
+p = Puppy()
+
+p.eat()
+p.bark()
+p.weep()
 ```
 
 ---
 
-# @property
-
-Converts a method into an attribute.
-
----
-
-# Example
+## Output
 
 ```python
-class Student:
-
-    def __init__(self, marks):
-        self.marks = marks
-
-    @property
-    def percentage(self):
-        return self.marks / 5
-
-student = Student(400)
-
-print(student.percentage)
+Animal Eats
+Dog Barks
+Puppy Weeps
 ```
 
 ---
 
-# Output
+## Explanation
+
+Puppy inherits:
+
+* weep() from Puppy
+* bark() from Dog
+* eat() from Animal
+
+---
+
+## Real-Life Example
 
 ```python
-80.0
+class LivingThing:
+
+    def breathe(self):
+        print("Breathing")
+
+class Animal(LivingThing):
+
+    def move(self):
+        print("Moving")
+
+class Dog(Animal):
+
+    def bark(self):
+        print("Barking")
+
+dog = Dog()
+
+dog.breathe()
+dog.move()
+dog.bark()
 ```
 
-Notice:
+---
+
+# 4. Hierarchical Inheritance
+
+Hierarchical inheritance occurs when multiple child classes inherit from one parent class.
+
+---
+
+## Structure
+
+```text
+         Parent
+        /      \
+       /        \
+   Child1     Child2
+```
+
+---
+
+## Example
 
 ```python
-student.percentage
+class Animal:
+
+    def eat(self):
+        print("Animal Eats")
+
+class Dog(Animal):
+
+    def bark(self):
+        print("Dog Barks")
+
+class Cat(Animal):
+
+    def meow(self):
+        print("Cat Meows")
+
+dog = Dog()
+cat = Cat()
+
+dog.eat()
+dog.bark()
+
+cat.eat()
+cat.meow()
 ```
 
-No parentheses are used.
+---
+
+## Output
+
+```python
+Animal Eats
+Dog Barks
+Animal Eats
+Cat Meows
+```
+
+---
+
+## Explanation
+
+Both Dog and Cat inherit Animal.
+
+Therefore both classes can use:
+
+```python
+eat()
+```
+
+without rewriting the code.
+
+---
+
+# Method Lookup Process
+
+Whenever Python executes:
+
+```python
+obj.method()
+```
+
+Python searches in the following order:
+
+```text
+Current Class
+      ↓
+Parent Class
+      ↓
+Grandparent Class
+      ↓
+object Class
+```
+
+---
+
+## Example
+
+```python
+class A:
+
+    def show(self):
+        print("A")
+
+class B(A):
+    pass
+
+class C(B):
+    pass
+
+obj = C()
+
+obj.show()
+```
+
+---
+
+## Search Path
+
+```text
+C
+↓
+B
+↓
+A
+↓
+object
+```
+
+Method found in A.
+
+---
+
+# The super() Function
+
+The super() function allows a child class to access methods from its parent class.
+
+---
+
+## Example
+
+```python
+class Animal:
+
+    def __init__(self):
+        print("Animal Constructor")
+
+class Dog(Animal):
+
+    def __init__(self):
+        super().__init__()
+        print("Dog Constructor")
+
+dog = Dog()
+```
+
+---
+
+## Output
+
+```python
+Animal Constructor
+Dog Constructor
+```
+
+---
+
+## Why Use super()?
+
+Without super():
+
+```python
+Parent constructor will not run automatically.
+```
+
+With super():
+
+```python
+Parent constructor runs first.
+```
+
+---
+
+# Method Overriding
+
+Method overriding occurs when a child class defines a method that already exists in the parent class.
+
+The child's version replaces the parent's version.
+
+---
+
+## Example
+
+```python
+class Animal:
+
+    def sound(self):
+        print("Animal Sound")
+
+class Dog(Animal):
+
+    def sound(self):
+        print("Bark")
+
+dog = Dog()
+
+dog.sound()
+```
+
+---
+
+## Output
+
+```python
+Bark
+```
+
+---
+
+# Advantages of Inheritance
+
+| Advantage          | Explanation                               |
+| ------------------ | ----------------------------------------- |
+| Reusability        | Reuse existing code                       |
+| Less Duplication   | Avoid writing the same code               |
+| Easier Maintenance | Changes made once affect multiple classes |
+| Better Structure   | Organizes code logically                  |
+| Faster Development | Less code to write                        |
 
 ---
 
 # Common Beginner Mistakes
 
----
-
-## Forgetting self
+## Forgetting Parent Name
 
 Wrong:
 
 ```python
-class Student:
-
-    def show():
-        print("Hello")
+class Dog:
 ```
 
 Correct:
 
 ```python
-class Student:
-
-    def show(self):
-        print("Hello")
+class Dog(Animal):
 ```
 
 ---
 
-## Forgetting cls in Class Method
+## Wrong Indentation
+
+Python uses indentation to define code blocks.
+
+Always use proper indentation.
+
+---
+
+## Forgetting Parent Constructor
 
 Wrong:
 
 ```python
-@classmethod
-def show():
-    pass
+class Dog(Animal):
+
+    def __init__(self):
+        print("Dog")
 ```
 
 Correct:
 
 ```python
-@classmethod
-def show(cls):
-    pass
-```
+class Dog(Animal):
 
----
-
-## Using self in Static Method
-
-Wrong:
-
-```python
-@staticmethod
-def show(self):
-    pass
-```
-
-Correct:
-
-```python
-@staticmethod
-def show():
-    pass
+    def __init__(self):
+        super().__init__()
+        print("Dog")
 ```
 
 ---
 
 # Summary
 
-* Methods are functions inside classes.
-* Python provides Instance Methods, Class Methods, and Static Methods.
-* Instance methods use `self`.
-* Class methods use `cls`.
-* Static methods use neither `self` nor `cls`.
-* Decorators start with `@`.
-* `@classmethod` creates a class method.
-* `@staticmethod` creates a static method.
-* `@property` converts a method into an attribute.
-* Class methods are commonly used for class-level operations and factory methods.
-* Static methods are utility functions related to the class.
-* Decorators help modify and extend function behavior without changing original code.
+* Inheritance allows one class to acquire properties of another class.
+* Parent class is also called Base Class or Super Class.
+* Child class is also called Derived Class or Sub Class.
+* Python supports Single, Multiple, Multilevel, and Hierarchical inheritance.
+* Child classes can reuse parent methods and attributes.
+* `super()` is used to access parent class methods.
+* MRO decides the search order in multiple inheritance.
+* Method overriding allows a child class to replace a parent method.
+* Every Python class ultimately inherits from `object`.
+
+Inheritance is one of the foundations of Object-Oriented Programming and is heavily used in real-world applications, frameworks, libraries, GUI development, web development, and large software systems.
