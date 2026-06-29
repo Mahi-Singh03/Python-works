@@ -1,16 +1,22 @@
-class human :
-    name="unknown"
-    age =0
-    result = "unknown"
+# Create a Human class
+class Human:
+    name = "Unknown"  # class attributes-
+    age = 0
+    result = "Unknown"
 
+# Create an instance
+mahi = Human()
 
-mahi = human()
-
-
-mahi.name = "mahi"
+# Update the instance attributes
+mahi.name = "Mahi"
 mahi.age = 20
-mahi.result = "pass"
+mahi.result = "Pass"
 
-print(mahi.name)
-print(mahi.age)
-print(mahi.result)
+# Display the updated attributes
+print("Name:", mahi.name)
+print("Age:", mahi.age)
+print("Result:", mahi.result)
+
+
+
+print(Human.age)

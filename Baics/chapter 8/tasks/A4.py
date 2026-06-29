@@ -1,44 +1,44 @@
-class Movies:
-    def __init__(self, actors, mode, budget, collection):
-        self.actors = actors
-        self.mode = mode
-        self.budget = budget
-        self.collection = collection
+# Create a class
+class Parents:
+    # Class Variable (Shared by all objects)
+    attribute1 = "value1"
 
-    def info(self):
-        print(
-            f"Each movie always has actors {self.actors}, "
-            f"is released in {self.mode}, "
-            f"has a budget of {self.budget}, "
-            f"and a collection of {self.collection}."
-        )
+    # Constructor
+    def __init__(self, a, b):
+        # Instance Variables (Unique for each object)
+        self.a = a
+        self.b = b
 
-
-class Action(Movies):
-    def __init__(self, super_villain, powers, superhero,
-                 actors, mode, budget, collection):
-        super().__init__(actors, mode, budget, collection)
-        self.super_villain = super_villain
-        self.powers = powers
-        self.superhero = superhero
-
-    def details(self):
-        super().info()
-        print(
-            f"\nThe action movie has a superhero {self.superhero} "
-            f"with the power {self.powers} "
-            f"to face the super villain {self.super_villain}."
-        )
+    # Method to display values
+    def show(self):
+        print("a =", self.a)
+        print("b =", self.b)
+        print("Class Attribute =", Parents.attribute1)
 
 
-civilwar = Action(
-    "Iron Man",
-    "Super Serum",
-    "Captain America",
-    "Robert Downey Jr., Chris Evans",
-    "Theaters",
-    "200M",
-    "900M"
-)
 
-civilwar.details()
+# Create an object (instance)
+
+child1 = Parents("Mahi", "Singh")
+
+print("Before Updating:")
+child1.show()
+
+
+
+# Update Instance Variables
+
+child1.a = "Rahul"
+child1.b = "Sharma"
+
+print("\nAfter Updating Instance Variables:")
+child1.show()
+
+
+
+# Update Class Variable
+
+Parents.attribute1 = "Delhi"
+
+print("\nAfter Updating Class Variable:")
+child1.show()
