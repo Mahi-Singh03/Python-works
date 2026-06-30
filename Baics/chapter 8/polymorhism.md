@@ -1,371 +1,381 @@
-# Encapsulation, Polymorphism, and Abstraction in Python
-
----
-
-# Introduction
-
-Object-Oriented Programming (OOP) is built around four major concepts:
-
-1. Encapsulation
-2. Inheritance
-3. Polymorphism
-4. Abstraction
-
-In this file, we will focus on:
-
-* Encapsulation
-* Polymorphism
-* Abstraction
-
-These concepts help make code:
-
-* More secure
-* Easier to maintain
-* More reusable
-* Better organized
-
----
-
-# 1. Encapsulation
-
----
-
-# What is Encapsulation?
-
-Encapsulation means:
-
-**Bundling data (variables) and methods (functions) together inside a class while restricting direct access to some data.**
-
-In simple words:
-
-> Encapsulation is the process of hiding internal details and protecting data from unwanted access.
-
----
-
-# Real-Life Example
-
-Think about an ATM.
-
-You can:
-
-* Check balance
-* Withdraw money
-* Deposit money
-
-But you cannot directly access the bank's internal database.
-
-The internal implementation is hidden.
-
-This is encapsulation.
-
----
-
-# Why Use Encapsulation?
-
-Encapsulation helps:
-
-* Protect data
-* Prevent accidental modification
-* Improve security
-* Control how data is accessed
-
----
-
-# Access Modifiers in Python
-
-Python provides three levels of access.
-
-| Type      | Syntax     | Access                  |
-| --------- | ---------- | ----------------------- |
-| Public    | variable   | Anywhere                |
-| Protected | _variable  | Class and Child Classes |
-| Private   | __variable | Inside Class Only       |
-
----
-
-# Public Variables
-
-Public variables can be accessed from anywhere.
-
----
-
-## Example
-
-```python
-class Student:
-
-    def __init__(self):
-        self.name = "Mahi"
-
-student = Student()
-
-print(student.name)
-```
-
----
-
-## Output
-
-```python
-Mahi
-```
-
----
-
-# Protected Variables
-
-Protected variables start with a single underscore.
-
-```python
-_variable
-```
-
-They should only be used inside the class and child classes.
-
----
-
-## Example
-
-```python
-class Student:
-
-    def __init__(self):
-        self._name = "Mahi"
-
-student = Student()
-
-print(student._name)
-```
-
----
-
-## Output
-
-```python
-Mahi
-```
-
-Python still allows access, but the underscore acts as a warning.
-
----
-
-# Private Variables
-
-Private variables start with double underscores.
-
-```python
-__variable
-```
-
-These cannot be accessed directly outside the class.
-
----
-
-## Example
-
-```python
-class Bank:
-
-    def __init__(self):
-        self.__balance = 5000
-
-bank = Bank()
-
-print(bank.__balance)
-```
-
----
-
-## Output
-
-```python
-AttributeError
-```
-
----
-
-# Why Does This Happen?
-
-Python performs name mangling.
-
-```python
-__balance
-```
-
-becomes:
-
-```python
-_Bank__balance
-```
-
-internally.
-
----
-
-# Accessing Private Variables Properly
-
-Use methods.
-
----
-
-## Example
-
-```python
-class Bank:
-
-    def __init__(self):
-        self.__balance = 5000
-
-    def show_balance(self):
-        print(self.__balance)
-
-bank = Bank()
-
-bank.show_balance()
-```
-
----
-
-## Output
-
-```python
-5000
-```
-
----
-
-# Modifying Private Variables
-
----
-
-## Example
-
-```python
-class Bank:
-
-    def __init__(self):
-        self.__balance = 5000
-
-    def deposit(self, amount):
-        self.__balance += amount
-
-    def show_balance(self):
-        print(self.__balance)
-
-bank = Bank()
-
-bank.deposit(1000)
-
-bank.show_balance()
-```
-
----
-
-## Output
-
-```python
-6000
-```
-
----
-
-# Real-World Encapsulation Example
-
-```python
-class Employee:
-
-    def __init__(self, salary):
-        self.__salary = salary
-
-    def get_salary(self):
-        return self.__salary
-
-employee = Employee(50000)
-
-print(employee.get_salary())
-```
-
----
-
-## Output
-
-```python
-50000
-```
-
----
-
-# Advantages of Encapsulation
-
-* Data Security
-* Better Control
-* Easy Maintenance
-* Cleaner Code
-* Reduced Bugs
-
----
-
-# 2. Polymorphism
+# POLYMORPHISM IN PYTHON
 
 ---
 
 # What is Polymorphism?
 
-The word polymorphism means:
+Polymorphism is one of the four main principles of Object-Oriented Programming (OOP).
 
-```text
-Poly = Many
-Morph = Forms
-```
+The word **Polymorphism** comes from two Greek words:
 
-Meaning:
+- **Poly** = Many
+- **Morph** = Forms
 
-> One interface, many forms.
+So, **Polymorphism means "Many Forms."**
 
-The same method name can behave differently for different objects.
+It allows the **same method, function, or operator** to perform different tasks depending on the object it is working with.
 
 ---
 
-# Real-Life Example
+# Real-World Example
 
-The word:
+Think about a **Person**.
 
-```text
-Run
-```
+A person can perform the action **"Speak."**
 
-can mean:
+But the way they speak depends on the language they know.
 
-* A person runs
-* A car runs
-* A machine runs
+For example:
 
-Same word.
+- English Speaker → "Hello"
+- Hindi Speaker → "Namaste"
+- Punjabi Speaker → "Sat Sri Akal"
 
-Different behavior.
+The action is the same (**Speak**), but the behavior is different.
 
-This is polymorphism.
+This is **Polymorphism**.
 
 ---
 
-# Polymorphism Using Different Classes
+# Another Real-World Example
+
+Think about a **Remote Control**.
+
+The same **Power Button** works for:
+
+- TV
+- AC
+- Speaker
+
+The button is the same, but the action depends on the device.
 
 ---
 
-## Example
+# Why Use Polymorphism?
+
+Polymorphism helps:
+
+| Benefit | Explanation |
+|----------|-------------|
+| Code Reusability | One interface can work with many objects |
+| Flexibility | Different objects can behave differently |
+| Cleaner Code | Reduces duplicate code |
+| Easy Maintenance | New classes can be added easily |
+| Extensibility | Makes programs scalable |
+
+---
+
+# Types of Polymorphism in Python
+
+| Type | Description |
+|------|-------------|
+| Duck Typing | Different objects respond to the same method |
+| Method Overriding | Child class changes parent method |
+| Operator Overloading | Operators behave differently for different objects |
+| Built-in Function Polymorphism | Same function works with different data types |
+
+---
+
+# Built-in Polymorphism
+
+Many Python functions work with different data types.
+
+---
+
+# Example
 
 ```python
-class Dog:
+print(len("Python"))
+
+print(len([1, 2, 3, 4]))
+
+print(len((10, 20, 30)))
+```
+
+## Output
+
+```python
+6
+4
+3
+```
+
+The same `len()` function works with:
+
+- String
+- List
+- Tuple
+
+---
+
+# Another Example
+
+```python
+print(max(5, 10, 15))
+
+print(max([3, 8, 2]))
+
+print(max("Python"))
+```
+
+## Output
+
+```python
+15
+8
+y
+```
+
+The same `max()` function behaves differently depending on the object.
+
+---
+
+# Method Overriding
+
+Method overriding happens when a child class provides its own implementation of a method already defined in the parent class.
+
+---
+
+# Example
+
+```python
+class Animal:
 
     def sound(self):
-        print("Bark")
+        print("Animal makes a sound")
 
-class Cat:
+class Dog(Animal):
+
+    def sound(self):
+        print("Dog barks")
+
+dog = Dog()
+
+dog.sound()
+```
+
+## Output
+
+```python
+Dog barks
+```
+
+The child's `sound()` method overrides the parent's method.
+
+---
+
+# Another Example
+
+```python
+class Animal:
+
+    def sound(self):
+        print("Animal Sound")
+
+class Cat(Animal):
 
     def sound(self):
         print("Meow")
 
-class Cow:
+cat = Cat()
+
+cat.sound()
+```
+
+## Output
+
+```python
+Meow
+```
+
+---
+
+# Parent Method Can Still Be Used
+
+The parent method can be called using `super()`.
+
+---
+
+# Example
+
+```python
+class Animal:
+
+    def sound(self):
+        print("Animal makes a sound")
+
+class Dog(Animal):
+
+    def sound(self):
+        super().sound()
+        print("Dog barks")
+
+dog = Dog()
+
+dog.sound()
+```
+
+## Output
+
+```python
+Animal makes a sound
+Dog barks
+```
+
+---
+
+# Duck Typing
+
+Python follows the principle:
+
+> "If it walks like a duck and quacks like a duck, then it is a duck."
+
+In Python, the type of the object is less important than the methods it has.
+
+---
+
+# Example
+
+```python
+class Dog:
+
+    def speak(self):
+        print("Bark")
+
+class Cat:
+
+    def speak(self):
+        print("Meow")
+
+def animal_sound(animal):
+    animal.speak()
+
+dog = Dog()
+cat = Cat()
+
+animal_sound(dog)
+animal_sound(cat)
+```
+
+## Output
+
+```python
+Bark
+Meow
+```
+
+The function works with both objects because both have a `speak()` method.
+
+---
+
+# Another Duck Typing Example
+
+```python
+class Car:
+
+    def move(self):
+        print("Car is moving")
+
+class Bird:
+
+    def move(self):
+        print("Bird is flying")
+
+def start(obj):
+    obj.move()
+
+start(Car())
+start(Bird())
+```
+
+## Output
+
+```python
+Car is moving
+Bird is flying
+```
+
+---
+
+# Operator Overloading
+
+Python operators also show polymorphic behavior.
+
+The same operator performs different operations depending on the operands.
+
+---
+
+# Example
+
+```python
+print(10 + 20)
+
+print("Hello " + "World")
+
+print([1, 2] + [3, 4])
+```
+
+## Output
+
+```python
+30
+Hello World
+[1, 2, 3, 4]
+```
+
+The `+` operator:
+
+- Adds numbers
+- Joins strings
+- Combines lists
+
+---
+
+# More Operator Examples
+
+```python
+print(5 * 3)
+
+print("Hi " * 3)
+
+print([1] * 4)
+```
+
+## Output
+
+```python
+15
+Hi Hi Hi
+[1, 1, 1, 1]
+```
+
+---
+
+# Polymorphism with Inheritance
+
+Different child classes can provide different implementations of the same method.
+
+---
+
+# Example
+
+```python
+class Animal:
+
+    def sound(self):
+        pass
+
+class Dog(Animal):
+
+    def sound(self):
+        print("Bark")
+
+class Cat(Animal):
+
+    def sound(self):
+        print("Meow")
+
+class Cow(Animal):
 
     def sound(self):
         print("Moo")
@@ -375,8 +385,6 @@ animals = [Dog(), Cat(), Cow()]
 for animal in animals:
     animal.sound()
 ```
-
----
 
 ## Output
 
@@ -388,496 +396,244 @@ Moo
 
 ---
 
-# How Does It Work?
+# Real-World Example
 
-Each object has its own version of:
+Different payment methods perform the same action.
+
+---
+
+# Example
 
 ```python
-sound()
+class CreditCard:
+
+    def pay(self):
+        print("Paid using Credit Card")
+
+class UPI:
+
+    def pay(self):
+        print("Paid using UPI")
+
+class Cash:
+
+    def pay(self):
+        print("Paid using Cash")
+
+payments = [CreditCard(), UPI(), Cash()]
+
+for payment in payments:
+    payment.pay()
 ```
-
-Python automatically calls the correct method.
-
----
-
-# Polymorphism Through Inheritance
-
----
-
-## Example
-
-```python
-class Animal:
-
-    def sound(self):
-        print("Animal Sound")
-
-class Dog(Animal):
-
-    def sound(self):
-        print("Bark")
-
-class Cat(Animal):
-
-    def sound(self):
-        print("Meow")
-
-dog = Dog()
-cat = Cat()
-
-dog.sound()
-cat.sound()
-```
-
----
 
 ## Output
 
 ```python
-Bark
-Meow
+Paid using Credit Card
+Paid using UPI
+Paid using Cash
 ```
 
 ---
 
-# Method Overriding
+# Another Example
 
-When a child class replaces a parent method.
+Different vehicles start differently.
 
 ---
 
-## Example
+# Example
 
 ```python
-class Animal:
-
-    def sound(self):
-        print("Animal Sound")
-
-class Dog(Animal):
-
-    def sound(self):
-        print("Bark")
-
-dog = Dog()
-
-dog.sound()
-```
-
----
-
-## Output
-
-```python
-Bark
-```
-
-The child version overrides the parent version.
-
----
-
-# Built-In Polymorphism
-
-Python functions often work with multiple data types.
-
----
-
-## Example
-
-```python
-print(len("Python"))
-
-print(len([1, 2, 3]))
-
-print(len((1, 2, 3, 4)))
-```
-
----
-
-## Output
-
-```python
-6
-3
-4
-```
-
-The same function:
-
-```python
-len()
-```
-
-works differently depending on the object.
-
----
-
-# Advantages of Polymorphism
-
-* Flexible code
-* Reusable code
-* Easier maintenance
-* Cleaner design
-
----
-
-# 3. Abstraction
-
----
-
-# What is Abstraction?
-
-Abstraction means:
-
-> Showing only important information while hiding implementation details.
-
-The user sees what an object does.
-
-The user does not need to know how it does it.
-
----
-
-# Real-Life Example
-
-When driving a car:
-
-You use:
-
-* Steering Wheel
-* Brake
-* Accelerator
-
-You do not need to know:
-
-* Engine internals
-* Fuel injection system
-* Transmission details
-
-Complexity is hidden.
-
-This is abstraction.
-
----
-
-# Why Use Abstraction?
-
-Abstraction helps:
-
-* Hide complexity
-* Improve security
-* Simplify usage
-* Reduce confusion
-
----
-
-# Abstraction Using Abstract Classes
-
-Python provides the:
-
-```python
-abc
-```
-
-module.
-
-ABC means:
-
-```text
-Abstract Base Class
-```
-
----
-
-# Creating an Abstract Class
-
----
-
-## Example
-
-```python
-from abc import ABC, abstractmethod
-
-class Animal(ABC):
-
-    @abstractmethod
-    def sound(self):
-        pass
-```
-
----
-
-# What is Happening?
-
-The method:
-
-```python
-sound()
-```
-
-must be implemented by child classes.
-
----
-
-# Child Class Implementation
-
-```python
-from abc import ABC, abstractmethod
-
-class Animal(ABC):
-
-    @abstractmethod
-    def sound(self):
-        pass
-
-class Dog(Animal):
-
-    def sound(self):
-        print("Bark")
-
-dog = Dog()
-
-dog.sound()
-```
-
----
-
-## Output
-
-```python
-Bark
-```
-
----
-
-# What If We Don't Implement It?
-
-```python
-class Dog(Animal):
-    pass
-
-dog = Dog()
-```
-
----
-
-## Output
-
-```python
-TypeError
-```
-
-Python forces the child class to implement all abstract methods.
-
----
-
-# Multiple Abstract Methods
-
----
-
-## Example
-
-```python
-from abc import ABC, abstractmethod
-
-class Vehicle(ABC):
-
-    @abstractmethod
-    def start(self):
-        pass
-
-    @abstractmethod
-    def stop(self):
-        pass
-```
-
----
-
-## Child Class
-
-```python
-class Car(Vehicle):
+class Car:
 
     def start(self):
         print("Car Started")
 
-    def stop(self):
-        print("Car Stopped")
+class Bike:
+
+    def start(self):
+        print("Bike Started")
+
+class Bus:
+
+    def start(self):
+        print("Bus Started")
+
+vehicles = [Car(), Bike(), Bus()]
+
+for vehicle in vehicles:
+    vehicle.start()
 ```
-
----
-
-# Real-World Example
-
-```python
-from abc import ABC, abstractmethod
-
-class Payment(ABC):
-
-    @abstractmethod
-    def pay(self, amount):
-        pass
-
-class CreditCard(Payment):
-
-    def pay(self, amount):
-        print(f"Paid ₹{amount} using Credit Card")
-
-class UPI(Payment):
-
-    def pay(self, amount):
-        print(f"Paid ₹{amount} using UPI")
-
-payments = [CreditCard(), UPI()]
-
-for payment in payments:
-    payment.pay(1000)
-```
-
----
 
 ## Output
 
 ```python
-Paid ₹1000 using Credit Card
-Paid ₹1000 using UPI
+Car Started
+Bike Started
+Bus Started
 ```
 
 ---
 
-# Advantages of Abstraction
+# Method Overloading in Python
 
-* Hides complexity
-* Improves security
-* Cleaner architecture
-* Easier maintenance
-* Better scalability
+Unlike some programming languages, Python **does not support true method overloading**.
+
+If two methods have the same name, the last one replaces the previous one.
 
 ---
 
-# Encapsulation vs Abstraction
-
-| Feature        | Encapsulation     | Abstraction      |
-| -------------- | ----------------- | ---------------- |
-| Purpose        | Hide Data         | Hide Complexity  |
-| Focus          | Security          | Simplicity       |
-| Achieved Using | Private Variables | Abstract Classes |
-| User Concern   | Access Control    | Interface Design |
-
----
-
-# Encapsulation vs Polymorphism
-
-| Encapsulation          | Polymorphism           |
-| ---------------------- | ---------------------- |
-| Protects Data          | Changes Behavior       |
-| Focuses on Security    | Focuses on Flexibility |
-| Uses Private Variables | Uses Method Overriding |
-
----
-
-# Abstraction vs Polymorphism
-
-| Abstraction               | Polymorphism           |
-| ------------------------- | ---------------------- |
-| Defines What Must Be Done | Defines How It Is Done |
-| Uses Abstract Classes     | Uses Method Overriding |
-| Hides Complexity          | Provides Flexibility   |
-
----
-
-# Complete OOP Example
+# Example
 
 ```python
-from abc import ABC, abstractmethod
+class Student:
 
-class Animal(ABC):
+    def show(self):
+        print("First Method")
 
-    def __init__(self, name):
-        self.__name = name
+    def show(self):
+        print("Second Method")
 
-    def get_name(self):
-        return self.__name
+student = Student()
 
-    @abstractmethod
-    def sound(self):
-        pass
-
-class Dog(Animal):
-
-    def sound(self):
-        print("Bark")
-
-class Cat(Animal):
-
-    def sound(self):
-        print("Meow")
-
-animals = [Dog("Tommy"), Cat("Kitty")]
-
-for animal in animals:
-    print(animal.get_name())
-    animal.sound()
+student.show()
 ```
-
----
 
 ## Output
 
 ```python
-Tommy
-Bark
+Second Method
+```
 
-Kitty
-Meow
+Only the second method exists.
+
+---
+
+# Achieving Overloading Using Default Arguments
+
+Although Python doesn't support method overloading directly, we can use default arguments.
+
+---
+
+# Example
+
+```python
+class Student:
+
+    def show(self, name=None):
+
+        if name:
+            print("Student:", name)
+        else:
+            print("No Name")
+
+student = Student()
+
+student.show()
+
+student.show("Mahi")
+```
+
+## Output
+
+```python
+No Name
+Student: Mahi
 ```
 
 ---
 
-# What Concepts Were Used?
-
-Encapsulation:
+# Complete Example
 
 ```python
-self.__name
+class Shape:
+
+    def area(self):
+        pass
+
+class Rectangle(Shape):
+
+    def __init__(self, length, width):
+        self.length = length
+        self.width = width
+
+    def area(self):
+        print("Area =", self.length * self.width)
+
+class Circle(Shape):
+
+    def __init__(self, radius):
+        self.radius = radius
+
+    def area(self):
+        print("Area =", 3.14 * self.radius * self.radius)
+
+rectangle = Rectangle(10, 5)
+circle = Circle(4)
+
+rectangle.area()
+circle.area()
 ```
 
-Polymorphism:
+## Output
 
 ```python
-animal.sound()
+Area = 50
+Area = 50.24
 ```
 
-Different behavior for different objects.
+---
 
-Abstraction:
+# Polymorphism vs Inheritance
 
-```python
-@abstractmethod
-def sound()
-```
+| Polymorphism | Inheritance |
+|--------------|-------------|
+| One interface, many behaviors | One class acquires another class's properties |
+| Focuses on behavior | Focuses on code reuse |
+| Achieved using overriding | Achieved using parent-child relationship |
 
-forces child classes to implement the method.
+---
+
+# Polymorphism vs Abstraction
+
+| Polymorphism | Abstraction |
+|--------------|-------------|
+| One method behaves differently | Hides implementation details |
+| Focuses on different behaviors | Focuses on essential features |
+| Uses overriding and duck typing | Uses abstract classes |
+
+---
+
+# Method Overriding vs Method Overloading
+
+| Method Overriding | Method Overloading |
+|-------------------|-------------------|
+| Child class changes parent method | Same method name with different parameters |
+| Supported in Python | Not directly supported |
+| Uses inheritance | Simulated using default arguments |
+
+---
+
+# Key Points
+
+- Polymorphism means **Many Forms**.
+- The same method can behave differently for different objects.
+- Python supports polymorphism through method overriding.
+- Python also supports duck typing.
+- Operators like `+` and `*` are polymorphic.
+- Built-in functions such as `len()` and `max()` are polymorphic.
+- Python does not support true method overloading.
 
 ---
 
 # Summary
 
-## Encapsulation
+- Polymorphism allows one interface to work with many different objects.
+- Different classes can implement the same method in their own way.
+- Method overriding is the most common form of polymorphism.
+- Duck typing allows objects with the same methods to be used interchangeably.
+- Operator overloading lets operators perform different operations depending on the data type.
+- Polymorphism makes programs flexible, reusable, and easier to maintain.
 
-* Hides data
-* Uses private variables
-* Improves security
-
-## Polymorphism
-
-* One method, many forms
-* Same interface, different behavior
-* Achieved through method overriding
-
-## Abstraction
-
-* Hides implementation details
-* Shows only essential features
-* Uses abstract classes and abstract methods
-
-Together, Encapsulation, Polymorphism, Inheritance, and Abstraction form the foundation of Object-Oriented Programming in Python.
+---
