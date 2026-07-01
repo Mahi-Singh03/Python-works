@@ -1,3 +1,118 @@
+ 
+
+
+
+
+
+
+
+
+
+
+# Factory methods using the class method
+
+# class random:
+#     def __init__(self,name):
+#         self.name=name
+
+#     @classmethod
+#     def create_instense(cls):
+#         return cls("mahi")
+#     # hear we created a instense inside the class
+    
+# random_instense=random.create_instense()
+
+# print(random_instense.name)
+
+
+
+
+
+#Built-in Decorators
+
+
+
+
+#@classmetod
+
+
+# class parent:
+#     age=100
+
+#     @classmethod
+#     def tell_age(cls):
+#         print(cls.age)
+
+
+
+# father=parent()
+# father.tell_age()
+
+
+
+
+
+
+#@staticmethod
+
+# class math_functions:
+
+#     @staticmethod
+#     def sum(a,b):
+#         print(a+b)
+
+
+# calculation=math_functions()
+
+
+# calculation.sum(8,9)
+
+
+
+
+
+#@property
+
+# class result:
+#     def __init__(self,marks):
+#         self.marks=marks
+
+#     @property
+#     def persentage(self):
+#         x=self.marks/100
+#         return x
+    
+
+# sem1=result(56)
+
+# print(sem1.persentage)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # """
 # =========================================================
 # PYTHON METHODS & DECORATORS - COMPLETE TUTORIAL
@@ -192,83 +307,3 @@
 # print("\\nTutorial Complete!")
 
 
-
-
-
-# Factory methods using the class method
-
-# class random:
-#     def __init__(self,name):
-#         self.name=name
-
-#     @classmethod
-#     def create_instense(cls):
-#         return cls("mahi")
-#     # hear we created a instense inside the class
-    
-# random_instense=random.create_instense()
-
-# print(random_instense.name)
-
-
-
-
-
-#Built-in Decorators
-
-
-
-
-#@classmetod
-
-
-# class parent:
-#     age=100
-
-#     @classmethod
-#     def tell_age(cls):
-#         print(cls.age)
-
-
-
-# father=parent()
-# father.tell_age()
-
-
-
-
-
-
-#@staticmethod
-
-# class math_functions:
-
-#     @staticmethod
-#     def sum(a,b):
-#         print(a+b)
-
-
-# calculation=math_functions()
-
-
-# calculation.sum(8,9)
-
-
-
-
-
-#@property
-
-class result:
-    def __init__(self,marks):
-        self.marks=marks
-
-    @property
-    def persentage(self):
-        x=self.marks/100
-        return x
-    
-
-sem1=result(56)
-
-print(sem1.persentage)
